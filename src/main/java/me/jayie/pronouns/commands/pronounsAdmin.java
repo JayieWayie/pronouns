@@ -21,6 +21,18 @@ public class pronounsAdmin implements CommandExecutor {
                 if (args.length < 1){
                     player.sendMessage("*insert error message*");
                 }
+
+                try{
+                    if (args[0].equalsIgnoreCase("reload")){
+
+                    }else if (args[0].equalsIgnoreCase("forceset")){
+
+                    }else{
+                        player.sendMessage("*insert error message*");
+                    }
+                }catch (ArrayIndexOutOfBoundsException | NullPointerException e){
+                    e.printStackTrace();
+                }
             }
 
         }else{
