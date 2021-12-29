@@ -1,0 +1,64 @@
+# -+- Player Information -+-
+
+# -=- Created By JayieWayie -=-
+# -_- Created for GrapeSMP -_-
+
+# Regarding Placeholders.
+
+# %pronouns% - shows pronouns set.
+# %player% - shows player name.
+
+# PrefixValue
+# The Prefix is sent before ALL message in the plugin.
+
+Prefix: '&8[&6Pronouns&8]'
+
+# Error Messages
+
+InvalidArgument: '&4Error404: &cCommand not found.'
+InvalidInputs: '&4Error404: Invalid Inputs. &cUse /pronouns help.'
+NullPlayer: '&4Error404: &cThat player is not online.'
+InvalidSender: '&4Error404: &cYou must be a player to run commands.'
+NoPermission: '&4Error404: &cNo Permission!'
+
+# Pronouns
+
+Pronouns:
+  - 'he/him'
+  - 'she/her'
+  - 'they/them'
+  - 'he/they'
+  - 'she/they'
+  - 'Any'
+
+# Player Messages
+
+# Sent to the player using /pi (online player).
+# Player must have permission pi.information
+Information:
+  - '&7-+-+-+- &6Pronouns &7-+-+-+-'
+  - ''
+  - '- &6Username: %player%'
+  - '- &6Pronouns: %pronouns%'
+  - ''
+
+# Sent to players using /pronouns help.
+HelpMessage:
+  - '&7-+-+-+- &6PI Help &7-+-+-+-'
+  - ''
+  - '- &6/pi information: sends information on a player'
+  - '- &6/pi reload: reloads the plugin configs.'
+
+# Sent to the player on /pi reload.
+# Player must have permission pi.reload
+ReloadMessage: '&aReload Complete.'
+
+
+# Permissions
+
+# ALL Default Perms - pronouns.default
+# ALL Perms - pronouns.*
+# Set - Default - pronouns.set
+# Color - Default - pronouns.color
+# ForceSet - Admin - pronouns.forceset
+# Reload - Admin - pronouns.reload
