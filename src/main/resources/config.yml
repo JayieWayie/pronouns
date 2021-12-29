@@ -1,4 +1,4 @@
-# -+- Player Information -+-
+# -+- Pronouns Plugin -+-
 
 # -=- Created By JayieWayie -=-
 # -_- Created for GrapeSMP -_-
@@ -17,7 +17,6 @@ Prefix: '&8[&6Pronouns&8]'
 
 InvalidArgument: '&4Error404: &cCommand not found.'
 InvalidInputs: '&4Error404: Invalid Inputs. &cUse /pronouns help.'
-NullPlayer: '&4Error404: &cThat player is not online.'
 InvalidSender: '&4Error404: &cYou must be a player to run commands.'
 NoPermission: '&4Error404: &cNo Permission!'
 
@@ -33,9 +32,8 @@ Pronouns:
 
 # Player Messages
 
-# Sent to the player using /pi (online player).
-# Player must have permission pi.information
-Information:
+# Sent to the player using /pronouns check (online player).
+PronounsCheck:
   - '&7-+-+-+- &6Pronouns &7-+-+-+-'
   - ''
   - '- &6Username: %player%'
@@ -44,13 +42,10 @@ Information:
 
 # Sent to players using /pronouns help.
 HelpMessage:
-  - '&7-+-+-+- &6PI Help &7-+-+-+-'
+  - '&7-+-+-+- &6Pronouns Help &7-+-+-+-'
   - ''
-  - '- &6/pi information: sends information on a player'
-  - '- &6/pi reload: reloads the plugin configs.'
 
-# Sent to the player on /pi reload.
-# Player must have permission pi.reload
+# Sent to the player on /pronouns reload.
 ReloadMessage: '&aReload Complete.'
 
 

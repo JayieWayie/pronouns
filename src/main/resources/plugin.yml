@@ -4,3 +4,10 @@ main: me.jayie.pronouns.Pronouns
 api-version: 1.18
 authors: [ Jayie ]
 description: Pronouns plugin.
+commands:
+  pronouns:
+    description: The base pronouns commands.
+    aliases: [pn]
+  apronouns:
+    description: The base admin pronoun commands.
+    aliases: [apn]
