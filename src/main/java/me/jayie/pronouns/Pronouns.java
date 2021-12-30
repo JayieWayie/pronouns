@@ -79,6 +79,7 @@ public final class Pronouns extends JavaPlugin implements Listener {
     public void onJoin(PlayerJoinEvent e) throws SQLException {
         Player player = e.getPlayer();
         DBQ.createPlayer(player);
+        player.sendMessage("hello");
     }
 
     private String Color(String s){
