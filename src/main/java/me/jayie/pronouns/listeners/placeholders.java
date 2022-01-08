@@ -7,6 +7,7 @@ import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class placeholders extends PlaceholderExpansion {
@@ -38,12 +39,19 @@ public class placeholders extends PlaceholderExpansion {
     public String onPlaceholderRequest(Player p, String identifier) {
 
         if (identifier.equals("set")) {
+            String pronounsChoice = null;
             try {
                 PreparedStatement ps1 = plugin.DB.getConnection().prepareStatement("SELECT pronounsSet FROM pronouns WHERE playerUUID=?");
                 ps1.setString(1, p.getUniqueId().toString());
+                ResultSet rs1 = ps1.executeQuery();
+                if (rs1.next()){
+                    pronounsChoice = rs1.getString("pronounsSet");
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+
+            return "" + pronounsChoice;
         }
 
         return null;

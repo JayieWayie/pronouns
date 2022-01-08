@@ -26,42 +26,58 @@ public class pronounsAdmin implements CommandExecutor {
         String noPermissionem = plugin.getConfig().getString("NoPermission");
         String invalidInputsem = plugin.getConfig().getString("InvalidInputs");
         String invalidArgumentem = plugin.getConfig().getString("InvalidArgument");
-        String modForceSetm = plugin.getConfig().getString("");
+        String invalidSenderem = plugin.getConfig().getString("InvalidSender");
+        String reloadm = plugin.getConfig().getString("ReloadMessage");
+        String modForceSetm = plugin.getConfig().getString("forceset_ModMessage");
+        String playerForceSetm = plugin.getConfig().getString("forceset_PlayerMessage");
+        String prefix = plugin.getConfig().getString("PrefixValue");
         List<String> pronounsListc = plugin.getConfig().getStringList("Pronouns");
 
         if (sender instanceof Player){
             Player player = (Player) sender;
 
             if (command.getName().equalsIgnoreCase("apronouns")) {
-                if (!player.hasPermission("pronouns.admin") | !player.hasPermission("pronouns.*")) {
-                    player.sendMessage(C(noPermissionem));
+                if (!player.hasPermission("pronouns.admin")) {
+                    player.sendMessage(C(prefix + " " + noPermissionem));
                 } else {
 
                     if (args.length < 1) {
-                        player.sendMessage(C(invalidArgumentem));
+                        player.sendMessage(C(prefix + " " + invalidArgumentem));
                     }
 
                     try {
                         if (args[0].equalsIgnoreCase("reload")) {
-
+                            plugin.reloadConfig();
+                            player.sendMessage(C(prefix + " " + reloadm));
                         } else if (args[0].equalsIgnoreCase("forceset")) {
-                            Player target = Bukkit.getPlayer(args[2]);
-                            PreparedStatement fs1 = plugin.DB.getConnection().prepareStatement("UPDATE pronouns SET pronounsSet=? WHERE playerUUID=?");
-                            fs1.setString(1, args[3]);
-                            fs1.setString(2, target.getUniqueId().toString());
-                            fs1.executeUpdate();
-                            player.sendMessage(C());
+                            String pronounslistsplit = null;
+                            for (String pronounlist : pronounsListc){
+                                pronounslistsplit = pronounlist;
+                            }
+
+                            if (!args[2].equalsIgnoreCase(pronounslistsplit)) {
+                                player.sendMessage(C(prefix + " " + invalidInputsem));
+                            } else {
+                                Player target = Bukkit.getPlayer(args[1]);
+                                PreparedStatement fs1 = plugin.DB.getConnection().prepareStatement("UPDATE pronouns SET pronounsSet=? WHERE playerUUID=?");
+                                fs1.setString(1, args[2]);
+                                fs1.setString(2, target.getUniqueId().toString());
+                                fs1.executeUpdate();
+                                player.sendMessage(C(prefix + " " + modForceSetm));
+                                target.sendMessage(C(prefix + " " +playerForceSetm));
+
+                            }
                         } else {
-                            player.sendMessage(C(invalidArgumentem));
+                            player.sendMessage(C(prefix + " " + invalidArgumentem));
                         }
                     } catch (ArrayIndexOutOfBoundsException | NullPointerException | SQLException e) {
-                        player.sendMessage(C(invalidArgumentem));
+                        player.sendMessage(C(prefix + " " + invalidArgumentem));
                     }
                 }
             }
 
         }else{
-            sender.sendMessage("*insert error message*");
+            sender.sendMessage(C(prefix + " " + invalidSenderem));
         }
 
 

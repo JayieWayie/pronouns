@@ -4,8 +4,9 @@
 # -_- Created for GrapeSMP -_-
 
 # Regarding Placeholders.
+# Please use PlaceholderAPI. No ecloud download required.
 
-# %current_pronouns% - shows pronouns set.
+# %pronouns_set% - shows pronouns set. - You can use this in essentialschat to show the pronouns in chat.
 # %new_pronouns% - shows newly set pronouns.
 # %player% - shows player name.
 # %moderator% - shows moderator name.
@@ -15,6 +16,7 @@ Address: 'localhost'
 Port: '3306'
 Username: 'root'
 Password: ''
+Database: ''
 
 
 # PrefixValue
@@ -41,18 +43,22 @@ Pronouns:
 
 # Player Messages
 
+Success: 'Pronouns set to %new_pronouns%.'
+
 # Sent to the player using /pronouns check (online player).
 PronounsCheck:
   - '&7-+-+-+- &6Pronouns &7-+-+-+-'
   - ''
   - '- &6Username: %player%'
-  - '- &6Pronouns: %pronouns%'
+  - '- &6Pronouns: %pronouns_set%'
   - ''
 
 # Sent to players using /pronouns help.
 HelpMessage:
   - '&7-+-+-+- &6Pronouns Help &7-+-+-+-'
   - ''
+  - '&6/pronouns set (pronouns) - Allows the user to change their pronouns.'
+  - '&6/pronouns list - Allows a user to view the available pronouns.'
 
 # Sent to the player on /pronouns reload.
 ReloadMessage: '&aReload Complete.'

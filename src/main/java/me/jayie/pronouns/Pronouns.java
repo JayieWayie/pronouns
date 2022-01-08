@@ -1,9 +1,11 @@
 package me.jayie.pronouns;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import me.jayie.pronouns.commands.pronounsAdmin;
 import me.jayie.pronouns.commands.pronounsDefault;
 import me.jayie.pronouns.database.database;
 import me.jayie.pronouns.database.databaseQueries;
+import me.jayie.pronouns.listeners.placeholders;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -43,7 +45,7 @@ public final class Pronouns extends JavaPlugin implements Listener {
 
     public void commands(){
         // Execute all command classes.
-        getCommand("pronouns").setExecutor(new pronounsDefault());
+        getCommand("pronouns").setExecutor(new pronounsDefault(this));
         getCommand("apronouns").setExecutor(new pronounsAdmin(this));
     }
 
@@ -52,6 +54,7 @@ public final class Pronouns extends JavaPlugin implements Listener {
     public void listeners(){
         // Execute all listener classes.
         getServer().getPluginManager().registerEvents(this, this);
+        PlaceholderAPI.registerExpansion(new placeholders(this));
 
     }
 
