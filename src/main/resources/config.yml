@@ -5,8 +5,17 @@
 
 # Regarding Placeholders.
 
-# %pronouns% - shows pronouns set.
+# %current_pronouns% - shows pronouns set.
+# %new_pronouns% - shows newly set pronouns.
 # %player% - shows player name.
+# %moderator% - shows moderator name.
+
+#Database
+Address: 'localhost'
+Port: '3306'
+Username: 'root'
+Password: ''
+
 
 # PrefixValue
 # The Prefix is sent before ALL message in the plugin.
@@ -48,6 +57,9 @@ HelpMessage:
 # Sent to the player on /pronouns reload.
 ReloadMessage: '&aReload Complete.'
 
+# Sent to the moderator who does /apronouns forceset.
+forceset_ModMessage: 'set pronouns for %player% to %new_pronouns%'
+forceset_PlayerMessage: 'pronouns set to %new_pronouns% by %moderator%'
 
 # Permissions
 

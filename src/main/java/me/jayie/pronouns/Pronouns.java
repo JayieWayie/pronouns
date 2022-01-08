@@ -44,7 +44,7 @@ public final class Pronouns extends JavaPlugin implements Listener {
     public void commands(){
         // Execute all command classes.
         getCommand("pronouns").setExecutor(new pronounsDefault());
-        getCommand("apronouns").setExecutor(new pronounsAdmin());
+        getCommand("apronouns").setExecutor(new pronounsAdmin(this));
     }
 
 
