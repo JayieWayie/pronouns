@@ -18,7 +18,7 @@ public class database {
     private Connection connection;
 
     public boolean isConnected(){
-        return(connection != null);
+        return(this.connection != null);
     }
 
     public void connect() throws SQLException {
@@ -28,14 +28,19 @@ public class database {
         String pass = plugin.getConfig().getString("Password");
         String database = plugin.getConfig().getString("Database");
 
-            connection = DriverManager.getConnection("jdbc:mysql://" + URLEncoder.encode(user, StandardCharsets.UTF_8) + ":" + URLEncoder.encode(pass, StandardCharsets.UTF_8) + "@" + host + ":" + port + "/" + database + "?autoReconnect=true");
-
+        if (!isConnected()) {
+             try {
+                this.connection = DriverManager.getConnection("jdbc:mysql://" + URLEncoder.encode(user, StandardCharsets.UTF_8) + ":" + URLEncoder.encode(pass, StandardCharsets.UTF_8) + "@" + host + ":" + port + "/" + database + "?autoReconnect=true");
+            } catch (SQLException e) {
+                plugin.getLogger().severe("! DATABASE NEEDS TO BE CONNECTED !");
+            }
+        }
     }
 
     public void disconnect(){
         if (isConnected()){
             try{
-                connection.close();
+                this.connection.close();
             }catch(SQLException e){
                 e.printStackTrace();
             }
@@ -43,7 +48,7 @@ public class database {
     }
 
     public Connection getConnection(){
-        return connection;
+        return this.connection;
     }
 
 

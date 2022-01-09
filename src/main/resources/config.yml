@@ -6,7 +6,7 @@
 # Regarding Placeholders.
 # Please use PlaceholderAPI. No ecloud download required.
 
-# %pronouns_set% - shows pronouns set. - You can use this in essentialschat to show the pronouns in chat.
+# %pronouns_set% - shows pronouns set.
 # %new_pronouns% - shows newly set pronouns.
 # %player% - shows player name.
 # %moderator% - shows moderator name.
@@ -22,7 +22,7 @@ Database: ''
 # PrefixValue
 # The Prefix is sent before ALL message in the plugin.
 
-Prefix: '&8[&6Pronouns&8]'
+PrefixValue: '&8[&6Pronouns&8]'
 
 # Error Messages
 
@@ -34,16 +34,16 @@ NoPermission: '&4Error404: &cNo Permission!'
 # Pronouns
 
 Pronouns:
-  - 'he/him'
-  - 'she/her'
-  - 'they/them'
-  - 'he/they'
-  - 'she/they'
+  - 'hehim'
+  - 'sheher'
+  - 'theythem'
+  - 'hethey'
+  - 'shethey'
   - 'Any'
 
 # Player Messages
 
-Success: 'Pronouns set to %new_pronouns%.'
+Success: 'Pronouns set to %new_pronouns%'
 
 # Sent to the player using /pronouns check (online player).
 PronounsCheck:
@@ -59,6 +59,8 @@ HelpMessage:
   - ''
   - '&6/pronouns set (pronouns) - Allows the user to change their pronouns.'
   - '&6/pronouns list - Allows a user to view the available pronouns.'
+  - '&6/apronouns reload - Reload configuration files.'
+  - '&6/apronouns forceset (name) (pronouns) - forceset someones pronouns.'
 
 # Sent to the player on /pronouns reload.
 ReloadMessage: '&aReload Complete.'
@@ -68,10 +70,5 @@ forceset_ModMessage: 'set pronouns for %player% to %new_pronouns%'
 forceset_PlayerMessage: 'pronouns set to %new_pronouns% by %moderator%'
 
 # Permissions
-
-# ALL Default Perms - pronouns.default
-# ALL Perms - pronouns.*
-# Set - Default - pronouns.set
-# Color - Default - pronouns.color
-# ForceSet - Admin - pronouns.forceset
-# Reload - Admin - pronouns.reload
+# ForceSet - Admin - pronouns.admin
+# Reload - Admin - pronouns.admin

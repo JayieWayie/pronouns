@@ -1,11 +1,9 @@
 package me.jayie.pronouns;
 
-import me.clip.placeholderapi.PlaceholderAPI;
 import me.jayie.pronouns.commands.pronounsAdmin;
 import me.jayie.pronouns.commands.pronounsDefault;
 import me.jayie.pronouns.database.database;
 import me.jayie.pronouns.database.databaseQueries;
-import me.jayie.pronouns.listeners.placeholders;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -27,18 +25,20 @@ public final class Pronouns extends JavaPlugin implements Listener {
         commands();
         listeners();
         database();
-        if (!DB.isConnected()){
-            try {
-                DB.connect();
-            } catch (SQLException e) {
-                getLogger().severe(Color("&8[&6Pronouns&8] &4Database needs connecting."));
-            }
-        }else{
+        getConfig().options().copyDefaults();
+        saveDefaultConfig();
+        try {
+            DB.connect();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (DB.isConnected()){
             try {
                 DBQ.createTable();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+
         }
     }
 
@@ -54,7 +54,6 @@ public final class Pronouns extends JavaPlugin implements Listener {
     public void listeners(){
         // Execute all listener classes.
         getServer().getPluginManager().registerEvents(this, this);
-        PlaceholderAPI.registerExpansion(new placeholders(this));
 
     }
 
@@ -67,7 +66,7 @@ public final class Pronouns extends JavaPlugin implements Listener {
     public void startupMessage(){
         // Startup Message
         getLogger().info(Color("&8[&cPronouns&8] &aPlugin Started Correctly."));
-        getLogger().info(" - + - &7Created by Jayie. - + - ");
+        getLogger().info(Color(" - + - &7Created by Jayie. &f- + - "));
     }
 
     @Override
@@ -82,7 +81,6 @@ public final class Pronouns extends JavaPlugin implements Listener {
     public void onJoin(PlayerJoinEvent e) throws SQLException {
         Player player = e.getPlayer();
         DBQ.createPlayer(player);
-        player.sendMessage("hello");
     }
 
     private String Color(String s){

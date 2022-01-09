@@ -63,8 +63,12 @@ public class pronounsAdmin implements CommandExecutor {
                                 fs1.setString(1, args[2]);
                                 fs1.setString(2, target.getUniqueId().toString());
                                 fs1.executeUpdate();
+                                modForceSetm = modForceSetm.replace("%player%",target.getName());
+                                modForceSetm = modForceSetm.replace("%pronouns_new%", args[2]);
                                 player.sendMessage(C(prefix + " " + modForceSetm));
-                                target.sendMessage(C(prefix + " " +playerForceSetm));
+                                playerForceSetm.replace("%moderator%", player.getName());
+                                playerForceSetm.replace("%pronouns_new%", args[2]);
+                                target.sendMessage(C(prefix + " " + playerForceSetm));
 
                             }
                         } else {

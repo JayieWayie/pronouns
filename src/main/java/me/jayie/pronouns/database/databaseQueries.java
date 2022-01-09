@@ -10,21 +10,22 @@ import java.util.UUID;
 
 public class databaseQueries {
 
-    private Pronouns plugin;
+    private final Pronouns plugin;
     public databaseQueries(Pronouns plugin){
         this.plugin = plugin;
     }
 
 
     public void createTable() throws SQLException {
-            PreparedStatement table = plugin.DB.getConnection().prepareStatement("CREATE TABLE IF NOT EXIST pronouns(playerUUID varchar(255), pronounsSet varchar(100), colorSet varchar(255), PRIMARY KEY(playerUUID))");
+            PreparedStatement table = plugin.DB.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS pronouns(playerUUID varchar(255), pronounsSet varchar(100), colorSet varchar(255), PRIMARY KEY(playerUUID))");
             table.executeUpdate();
+            System.out.println("Table created.");
     }
 
     public void createPlayer(Player player) throws SQLException {
         UUID uuid = player.getUniqueId();
         if (!doesPlayerExist(player)){
-            PreparedStatement createPlayer = plugin.DB.getConnection().prepareStatement("INSERT INTO pronouns (playerUUID, pronounsSet, colorSet) VALUES (?,?,?)");
+            PreparedStatement createPlayer = plugin.DB.getConnection().prepareStatement("INSERT IGNORE INTO pronouns (playerUUID, pronounsSet, colorSet) VALUES (?,?,?)");
             createPlayer.setString(1, uuid.toString());
             createPlayer.setString(2, "N/A");
             createPlayer.setString(3, "WHITE");

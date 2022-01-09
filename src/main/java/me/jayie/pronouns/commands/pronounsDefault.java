@@ -49,17 +49,24 @@ public class pronounsDefault implements CommandExecutor {
                 }
                 try {
                     if (args[0].equalsIgnoreCase("help")) {
-                        player.sendMessage("*insert help message*");
-                    } else if (args[0].equalsIgnoreCase("set")) {
-                        String pronounslistsplit = null;
-                        for (String pronounslists : pronounsListc){
-                            pronounslistsplit = pronounslists;
+                        for (String helpmessage : helpm){
+                            player.sendMessage(C(helpmessage));
                         }
-                        if (args[1].equalsIgnoreCase(pronounslistsplit)){
+                    } else if (args[0].equalsIgnoreCase("set")) {
+                        boolean checkpn = false;
+                        for (String pnl:pronounsListc) {
+                            if (args[1].equalsIgnoreCase(pnl)) {
+                                checkpn = true;
+                                break;
+                            }
+                        }
+
+                        if (checkpn){
                             PreparedStatement set1 = plugin.DB.getConnection().prepareStatement("UPDATE pronouns SET pronounsSet=? WHERE playerUUID=?");
                             set1.setString(1, args[1]);
                             set1.setString(2, player.getUniqueId().toString());
                             set1.executeUpdate();
+                            successm = successm.replace("%pronouns_new%", args[1]);
                             player.sendMessage(C(prefix + " " + successm));
                         }
                     } else if (args[0].equalsIgnoreCase("check")) {
@@ -74,7 +81,11 @@ public class pronounsDefault implements CommandExecutor {
                         for (String pn : checkm){
                             pn = pn.replace("%pronouns_set%", pronounsChoice);
                             pn = pn.replace("%player%", target.getName());
-                            player.sendMessage(pn);
+                            player.sendMessage(C(pn));
+                        }
+                    }else if(args[0].equalsIgnoreCase("list")){
+                        for (String pnlist : pronounsListc){
+                            player.sendMessage(C(pnlist));
                         }
                     } else {
                         player.sendMessage(C(prefix + invalidArgumentem));
